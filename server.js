@@ -11,28 +11,28 @@ app.get('/',(req,res)=>{
    res.json("hello");
 });
 
-// app.get('/convert',(req,res)=>{
-//  const toCurrency=req.query.to_currency;
-//  const fromCurrency=req.query._currency;
+app.get('/convert',(req,res)=>{
+ const toCurrency=req.query.to_currency;
+ const fromCurrency=req.query._currency;
 
 
-//   const options = {
-//     method: 'GET',
-//     url: 'https://alpha-vantage.p.rapidapi.com/query',
-//     params: {from_currency:fromCurrency , function: 'CURRENCY_EXCHANGE_RATE', to_currency: toCurrency},
-    // headers: {
-    //   'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-    //   'x-rapidapi-key': process.env.REACT_APP_API_KEY
-    // }
-//   };
+  const options = {
+    method: 'GET',
+    url: 'https://alpha-vantage.p.rapidapi.com/query',
+    params: {from_currency:fromCurrency , function: 'CURRENCY_EXCHANGE_RATE', to_currency: toCurrency},
+    headers: {
+      'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_API_KEY
+    }
+  };
   
-//   axios.request(options).then(function (response) {
-//     console.log(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
-//     res.json(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
-//   }).catch(function (error) {
-//     console.error(error);
-//   });
-// });
+  axios.request(options).then(function (response) {
+    console.log(response.data["Realtime Currency Exchange Rate"]["5.Exchange Rate"]);
+    res.json(response.data["Realtime Currency Exchange Rate"]["5.Exchange Rate"]);
+  }).catch(function (error) {
+    console.error(error);
+  });
+});
 
 app.get('/news',(req,res)=>{
   const options = {
